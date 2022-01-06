@@ -28,7 +28,7 @@ public class ObjectPooler : MonoSingleton<ObjectPooler>
         #endregion
     }
 
-    public GameObject SpawmFromPool(string tag, Vector3 position, Quaternion rotation)
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag)) //if there is no compared tag in our dictionary return null 
         {
