@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea42c0550d7f41e43bd77508b3a21b80, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  sideMovementSensitivity: 0.5
-  cannonSideMovementRoot: {fileID: 0}
+  sideMovementSensitivity: 0.015
