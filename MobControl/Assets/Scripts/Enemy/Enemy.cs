@@ -22,5 +22,14 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
         }
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PlayerRusher"))
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 }
