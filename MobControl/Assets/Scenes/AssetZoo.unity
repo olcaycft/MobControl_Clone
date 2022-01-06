@@ -362,6 +362,9 @@ MonoBehaviour:
   - tag: Player
     prefab: {fileID: 2343464597967047589, guid: f45fba71e1081124ab16aaa1fd2827d6, type: 3}
     size: 5
+  - tag: Enemy
+    prefab: {fileID: 1079555734020345079, guid: cfb39c500c4200a47b1069e991d692c7, type: 3}
+    size: 5
 --- !u!4 &689439807
 Transform:
   m_ObjectHideFlags: 0
@@ -897,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bee1043ea7a394aae743020f283aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerPoint: 50
 --- !u!1001 &2447196749451152830
 PrefabInstance:
   m_ObjectHideFlags: 0

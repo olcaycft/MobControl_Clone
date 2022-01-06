@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   sideMovementSensitivity: 0.015
-  spawnInterval: 0.5
+  spawnIntervalForPlayer: 0.5
+  playerSpeedChangeTime: 0.5
+  playerSingleStepSpeedAtTowerArea: 1
+  spawnIntervalForEnemy: 5
+  enemySpeed: 4

@@ -13,7 +13,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] private Transform cannonRightLimit;
     [SerializeField] private Transform cannonLeftLimit;
 
-    private float spawnInterval => SettingsManager.GameSettings.spawnInterval;
+    private float spawnInterval => SettingsManager.GameSettings.spawnIntervalForPlayer;
     private float instantiationTimer;
     private float cannonRightLimitX => cannonRightLimit.localPosition.x;
     private float cannonLeftLimitX => cannonLeftLimit.localPosition.x;
@@ -72,6 +72,5 @@ public class Cannon : MonoBehaviour
         ObjectPooler.Instance.SpawnFromPool("Player",
             new Vector3(sideMovementRoot.position.x, sideMovementRoot.position.y, sideMovementRoot.position.z + 1.2f),
             sideMovementRoot.transform.rotation);
-        //
     }
 }

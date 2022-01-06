@@ -4,7 +4,9 @@ using UnityEngine;
 public class GameSettings : ScriptableObject
 {
     public float sideMovementSensitivity = 0.5f;
-    public float spawnInterval = 0.5f;
+    public float spawnIntervalForPlayer = 0.5f;
     public float playerSpeedChangeTime = 0.5f;
     public float playerSingleStepSpeedAtTowerArea = 1f;
+    public float spawnIntervalForEnemy = 5f;
+    public float enemySpeed = 6f;
 }
