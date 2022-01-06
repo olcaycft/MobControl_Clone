@@ -26,7 +26,6 @@ public class DestinationTracker : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("TowerArea"))
         {
-            Debug.Log("im tower area");
             isPlayerAtTowerArea = true;
         }
         else
