@@ -139,10 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sideMovementRoot: {fileID: 5918792671936433017}
-  sideMovementSensitivity: 0.5
   cannonRightLimit: {fileID: 2817672582869641845}
   cannonLeftLimit: {fileID: 6279649055678573887}
-  scaleTime: 0.03
 --- !u!1 &4953942272577652240
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,11 +180,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4953942272577652240}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.5, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8.698623, y: 1.5, z: 1.9093132}
+  m_Center: {x: 0.047420025, y: 0, z: 0.4546566}
 --- !u!1001 &4953942271248598837
 PrefabInstance:
   m_ObjectHideFlags: 0

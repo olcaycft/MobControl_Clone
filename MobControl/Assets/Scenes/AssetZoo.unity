@@ -360,7 +360,7 @@ MonoBehaviour:
   pools:
   - tag: Player
     prefab: {fileID: 2343464597967047589, guid: f45fba71e1081124ab16aaa1fd2827d6, type: 3}
-    size: 20
+    size: 5
 --- !u!4 &689439807
 Transform:
   m_ObjectHideFlags: 0
