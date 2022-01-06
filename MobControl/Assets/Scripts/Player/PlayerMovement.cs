@@ -26,15 +26,8 @@ public class PlayerMovement : MonoBehaviour,IPooledObject
 
     public void OnObjectSpawn()
     {
-        transform.position += Vector3.forward*Time.deltaTime*speed;
+        transform.position += transform.forward*Time.deltaTime*speed;
     }
-
-    /*private void PlayerForwardMovement()
-    {
-        playerSpeedChanger();
-        transform.position+=Vector3.forward*Time.deltaTime*speed;
-    }*/
-
     private void playerSpeedChanger()
     {
         speed = 6f;
@@ -43,7 +36,6 @@ public class PlayerMovement : MonoBehaviour,IPooledObject
     {
         if (other.gameObject.CompareTag("PlayerRusher"))
         {
-            Debug.Log("im ontrigger");
             isPlayerCome = true;
             speed = 12f;
             Invoke(nameof(playerSpeedChanger),playerSpeedChangeTime);

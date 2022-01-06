@@ -725,7 +725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2447196749711759651}
-  - component: {fileID: 2447196749711759648}
+  - component: {fileID: 6352237646014920006}
   m_Layer: 0
   m_Name: TowerArea
   m_TagString: TowerArea
@@ -741,14 +741,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2447196749711759650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13999999, y: 0.59000015, z: 1.1200027}
+  m_LocalPosition: {x: -0.13999999, y: -0.09, z: 1.1200027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2447196749096061305}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2447196749711759648
-SphereCollider:
+--- !u!65 &6352237646014920006
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -758,8 +758,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.9982347, y: 1, z: 7.902588}
+  m_Center: {x: 0.19671631, y: 0, z: -0.20351028}
 --- !u!1 &2447196749944547136
 GameObject:
   m_ObjectHideFlags: 0
