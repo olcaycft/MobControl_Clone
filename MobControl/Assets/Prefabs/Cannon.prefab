@@ -142,6 +142,7 @@ MonoBehaviour:
   sideMovementSensitivity: 0.5
   cannonRightLimit: {fileID: 2817672582869641845}
   cannonLeftLimit: {fileID: 6279649055678573887}
+  scaleTime: 0.03
 --- !u!1 &4953942272577652240
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ GameObject:
   - component: {fileID: 4953942272577652254}
   m_Layer: 0
   m_Name: RushPlayer
-  m_TagString: Untagged
+  m_TagString: PlayerRusher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

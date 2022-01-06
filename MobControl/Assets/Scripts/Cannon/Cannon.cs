@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -9,11 +6,10 @@ public class Cannon : MonoBehaviour
     private Vector2 previousMousePosition;
 
     [SerializeField] private Transform sideMovementRoot;
-    [SerializeField] private float sideMovementSensitivity = 0.5f;
+    private float sideMovementSensitivity => SettingsManager.GameSettings.sideMovementSensitivity;
 
     [SerializeField] private Transform cannonRightLimit;
     [SerializeField] private Transform cannonLeftLimit;
-    [SerializeField] private float scaleTime = 0.03f;
 
     private float cannonRightLimitX => cannonRightLimit.localPosition.x;
     private float cannonLeftLimitX => cannonLeftLimit.localPosition.x;
@@ -29,6 +25,8 @@ public class Cannon : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             previousMousePosition = Input.mousePosition;
+            
+            //here is for big yellow one if i can add
         }
 
         if (Input.GetMouseButton(0))
@@ -36,6 +34,8 @@ public class Cannon : MonoBehaviour
             var deltaMouse = (Vector2)Input.mousePosition - previousMousePosition;
             inputDrag = deltaMouse;
             previousMousePosition = Input.mousePosition;
+            
+            //here is for little blue ones
         }
         else
         {
@@ -49,6 +49,5 @@ public class Cannon : MonoBehaviour
         localPos+=Vector3.right*inputDrag.x*sideMovementSensitivity;
         localPos.x = Mathf.Clamp(localPos.x, cannonLeftLimitX, cannonRightLimitX);
         sideMovementRoot.localPosition = localPos;
-        
     }
 }
