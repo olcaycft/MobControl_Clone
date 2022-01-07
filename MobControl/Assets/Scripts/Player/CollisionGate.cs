@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CollisionGate : MonoBehaviour
 {
     private float arrangeX;
-    private float zChange = 0.5f;
+    private float zChange = 1.5f;
     private float minRange;
     private float maxRange;
 
@@ -43,8 +40,8 @@ public class CollisionGate : MonoBehaviour
         }
         else if (count==4)
         {
-            minRange = -1.3f;
-            maxRange = 1.3f;
+            minRange = -1.5f;
+            maxRange = 1.5f;
         }
 
         for (int i = 0; i < count; i++)
@@ -54,7 +51,7 @@ public class CollisionGate : MonoBehaviour
             var pos = transform.position;
             pos.x += arrangeX;
             pos.z += zChange;
-            ObjectPooler.Instance.SpawnFromPool("Player", pos, transform.rotation);
+            ObjectPooler.Instance.SpawnFromPool(gameObject.tag, pos, transform.rotation);
         }
 
         zChange = 0.1f;

@@ -22,6 +22,10 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
         }
+        else if (collision.gameObject.CompareTag("Giant"))
+        {
+            gameObject.SetActive(false);
+        }
         
     }
 

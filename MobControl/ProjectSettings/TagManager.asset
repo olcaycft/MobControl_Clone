@@ -12,6 +12,8 @@ TagManager:
   - 4xGate
   - GateRightLimit
   - GateLeftLimit
+  - Giant
+  - Enemy
   layers:
   - Default
   - TransparentFX

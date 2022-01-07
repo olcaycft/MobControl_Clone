@@ -364,7 +364,10 @@ MonoBehaviour:
     size: 40
   - tag: Enemy
     prefab: {fileID: 1079555734020345079, guid: cfb39c500c4200a47b1069e991d692c7, type: 3}
-    size: 1
+    size: 2
+  - tag: Giant
+    prefab: {fileID: 6638362106827331731, guid: fd23809fb4e668845891e95b26872b64, type: 3}
+    size: 10
 --- !u!4 &689439807
 Transform:
   m_ObjectHideFlags: 0
@@ -470,7 +473,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &731664666
 GameObject:
@@ -692,7 +695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!1 &1037506415
 GameObject:
@@ -971,7 +974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2447196749096061305, guid: 0aa1df38e745e2348bbbbf04d3bf2b6c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2447196749096061305, guid: 0aa1df38e745e2348bbbbf04d3bf2b6c, type: 3}
       propertyPath: m_LocalPosition.x

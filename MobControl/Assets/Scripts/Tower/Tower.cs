@@ -1,13 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoSingleton<Tower>
 {
     [SerializeField] private int towerPoint = 50;
     private float spawnInterval => SettingsManager.GameSettings.spawnIntervalForEnemy;
+    private int giantHp;
     private void Awake()
     {
         InvokeRepeating(nameof(SpawnRoutine),spawnInterval,spawnInterval);
@@ -16,10 +15,20 @@ public class Tower : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        var collisionName = collision.gameObject.tag;
+        if (collisionName.Equals("Player") || collisionName.Equals("Giant"))
         {
             collision.gameObject.SetActive(false);
-            towerPoint -= 1;
+            
+            if (collisionName.Equals("Player"))
+            {
+                towerPoint -= 1;
+            }
+            else if(collisionName.Equals("Giant"))
+            {
+                var giantHp = GetGiantHP();
+                towerPoint -= giantHp ;
+            }
             
             TowerPointChanger.Instance.ChangeTowerPoint(towerPoint);
             
@@ -27,13 +36,12 @@ public class Tower : MonoBehaviour
             {
                 TowerPointChecker();
             }
-            
         }
     }
 
     private void SpawnRoutine()
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 4; i++)
         {
             float arrangeX = Random.Range(-3.5f, +3.5f);
             float arrangeZ = Random.Range(0f, 2.5f);
@@ -47,5 +55,14 @@ public class Tower : MonoBehaviour
     private void TowerPointChecker()
     {
             GameManager.Instance.Won();
+    }
+
+    public void SetGiantHP(int giantHp)
+    {
+        this.giantHp = giantHp;
+    }
+    public int GetGiantHP()
+    {
+        return this.giantHp;
     }
 }

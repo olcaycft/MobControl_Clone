@@ -8,7 +8,6 @@ public class TowerPointChanger : MonoSingleton<TowerPointChanger>
 
     public void ChangeTowerPoint(int towerPoint)
     {
-        Debug.Log("im change tower point");
         textMesh.text = towerPoint.ToString();
     }
 }

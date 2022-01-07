@@ -18,6 +18,8 @@ public class Cannon : MonoBehaviour
     private float cannonRightLimitX => cannonRightLimit.localPosition.x;
     private float cannonLeftLimitX => cannonLeftLimit.localPosition.x;
 
+    [SerializeField] private int numberOfPlayerThrown = 0;
+
     private void Awake()
     {
         instantiationTimer = spawnInterval;
@@ -47,8 +49,9 @@ public class Cannon : MonoBehaviour
             instantiationTimer -= Time.deltaTime;
             if (instantiationTimer <= Time.deltaTime)
             {
-                SpawnRoutine();
+                SpawnRoutinePlayer();
                 instantiationTimer = spawnInterval;
+                numberOfPlayerThrown++;
             }
         }
         else
@@ -56,6 +59,11 @@ public class Cannon : MonoBehaviour
             inputDrag = Vector2.zero;
             instantiationTimer = spawnInterval;
             //here is for big yellow one if i can add
+            if (numberOfPlayerThrown>=20)
+            {
+                SpawnRoutineGiant();
+                numberOfPlayerThrown = 0;
+            }
         }
     }
 
@@ -67,10 +75,16 @@ public class Cannon : MonoBehaviour
         sideMovementRoot.localPosition = localPos;
     }
 
-    private void SpawnRoutine()
+    private void SpawnRoutinePlayer()
     {
         var localPos = sideMovementRoot.position;
         localPos.z += 1.2f;
         ObjectPooler.Instance.SpawnFromPool("Player", localPos, sideMovementRoot.transform.rotation);
+    }
+    private void SpawnRoutineGiant()
+    {
+        var localPos = sideMovementRoot.position;
+        localPos.z += 1.2f;
+        ObjectPooler.Instance.SpawnFromPool("Giant", localPos, sideMovementRoot.transform.rotation);
     }
 }
