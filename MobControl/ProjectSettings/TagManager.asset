@@ -10,6 +10,8 @@ TagManager:
   - 2xGate
   - 3xGate
   - 4xGate
+  - GateRightLimit
+  - GateLeftLimit
   layers:
   - Default
   - TransparentFX
