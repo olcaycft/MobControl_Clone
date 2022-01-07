@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class Cannon : MonoSingleton<Cannon>
 {
     private Vector2 inputDrag;
     private Vector2 previousMousePosition;
@@ -19,7 +19,8 @@ public class Cannon : MonoBehaviour
     private float cannonLeftLimitX => cannonLeftLimit.localPosition.x;
 
     [SerializeField] private int numberOfPlayerThrown = 0;
-
+    private int giantCount = 20;
+    public event Action<float>OnProgressChange; 
     private void Awake()
     {
         instantiationTimer = spawnInterval;
@@ -51,7 +52,12 @@ public class Cannon : MonoBehaviour
             {
                 SpawnRoutinePlayer();
                 instantiationTimer = spawnInterval;
+                
+                
                 numberOfPlayerThrown++;
+                float currentThrownPct = (float) numberOfPlayerThrown / (float) giantCount;
+                OnProgressChange?.Invoke(currentThrownPct);
+
             }
         }
         else
@@ -59,10 +65,12 @@ public class Cannon : MonoBehaviour
             inputDrag = Vector2.zero;
             instantiationTimer = spawnInterval;
             //here is for big yellow one if i can add
-            if (numberOfPlayerThrown>=20)
+            if (numberOfPlayerThrown>=giantCount)
             {
                 SpawnRoutineGiant();
                 numberOfPlayerThrown = 0;
+                float currentThrownPct = (float) numberOfPlayerThrown / (float) giantCount;
+                OnProgressChange?.Invoke(currentThrownPct);
             }
         }
     }
