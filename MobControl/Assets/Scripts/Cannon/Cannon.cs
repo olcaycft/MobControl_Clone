@@ -69,8 +69,8 @@ public class Cannon : MonoBehaviour
 
     private void SpawnRoutine()
     {
-        ObjectPooler.Instance.SpawnFromPool("Player",
-            new Vector3(sideMovementRoot.position.x, sideMovementRoot.position.y, sideMovementRoot.position.z + 1.2f),
-            sideMovementRoot.transform.rotation);
+        var localPos = sideMovementRoot.position;
+        localPos.z += 1.2f;
+        ObjectPooler.Instance.SpawnFromPool("Player", localPos, sideMovementRoot.transform.rotation);
     }
 }

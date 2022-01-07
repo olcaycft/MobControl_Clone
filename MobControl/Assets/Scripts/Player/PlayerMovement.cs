@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerMovement : MonoBehaviour,IPooledObject
 {
-    private float speed = 12f;
+    private float speed=6f;
     private float playerSpeedChangeTime => SettingsManager.GameSettings.playerSpeedChangeTime;
     private bool isPlayerCome = false;
     
