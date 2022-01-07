@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Giant : MonoSingleton<Giant>
+public class Giant : MonoBehaviour
 {
-    [SerializeField] public int hp = 5;
+    [SerializeField] private int hp = 5;
     private Vector3 firstScale;
 
     private void Awake()

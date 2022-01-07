@@ -4,12 +4,15 @@ using Random = UnityEngine.Random;
 
 public class Tower : MonoSingleton<Tower>
 {
-    [SerializeField] private int towerPoint = 50;
+    private int _towerPoint =>SettingsManager.GameSettings.towerPointSetting;
+    [SerializeField] private int towerPoint;
     private float spawnInterval => SettingsManager.GameSettings.spawnIntervalForEnemy;
+    private int enemyCount => SettingsManager.GameSettings.enemyCount;
     private int giantHp;
     private void Awake()
     {
-        InvokeRepeating(nameof(SpawnRoutine),spawnInterval,spawnInterval);
+        towerPoint = _towerPoint;
+        InvokeRepeating(nameof(EnemySpawnRoutine),spawnInterval,spawnInterval);
         GameManager.Instance.SetDestination(transform.position);
         TowerPointChanger.Instance.ChangeTowerPoint(towerPoint);
     }
@@ -39,29 +42,21 @@ public class Tower : MonoSingleton<Tower>
         }
     }
 
-    private void SpawnRoutine()
+    private void EnemySpawnRoutine()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            float arrangeX = Random.Range(-3.5f, +3.5f);
-            float arrangeZ = Random.Range(0f, 2.5f);
-            ObjectPooler.Instance.SpawnFromPool("Enemy",
-                new Vector3(transform.position.x+arrangeX, transform.position.y+0.3f, transform.position.z - arrangeZ),
-                new Quaternion(0f,180f,0f,0f));
-        }
-        
+        GameManager.Instance.SpawnRequest("Enemy",transform.position, new Quaternion(0f,180f,0f,0f),enemyCount);
     }
 
     private void TowerPointChecker()
-    {
-            GameManager.Instance.Won();
+    { 
+        GameManager.Instance.Won();
     }
 
     public void SetGiantHP(int giantHp)
     {
         this.giantHp = giantHp;
     }
-    public int GetGiantHP()
+    private int GetGiantHP()
     {
         return this.giantHp;
     }

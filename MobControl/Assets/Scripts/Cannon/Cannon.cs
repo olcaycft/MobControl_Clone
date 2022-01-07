@@ -50,11 +50,13 @@ public class Cannon : MonoSingleton<Cannon>
             instantiationTimer -= Time.deltaTime;
             if (instantiationTimer <= Time.deltaTime)
             {
-                SpawnRoutinePlayer();
+                var localPos = sideMovementRoot.position;
+                var rotation = sideMovementRoot.transform.rotation;
+                GameManager.Instance.SpawnRequest("Player", localPos, rotation,1);
+                
                 instantiationTimer = spawnInterval;
-                
-                
                 numberOfPlayerThrown++;
+                
                 float currentThrownPct = (float) numberOfPlayerThrown / (float) giantCount;
                 OnProgressChange?.Invoke(currentThrownPct);
 
@@ -67,7 +69,10 @@ public class Cannon : MonoSingleton<Cannon>
             //here is for big yellow one if i can add
             if (numberOfPlayerThrown>=giantCount)
             {
-                SpawnRoutineGiant();
+                var localPos = sideMovementRoot.position;
+                var rotation = sideMovementRoot.transform.rotation;
+                GameManager.Instance.SpawnRequest("Giant", localPos, rotation,1);
+                
                 numberOfPlayerThrown = 0;
                 float currentThrownPct = (float) numberOfPlayerThrown / (float) giantCount;
                 OnProgressChange?.Invoke(currentThrownPct);
@@ -81,18 +86,5 @@ public class Cannon : MonoSingleton<Cannon>
         localPos += Vector3.right * inputDrag.x * sideMovementSensitivity;
         localPos.x = Mathf.Clamp(localPos.x, cannonLeftLimitX, cannonRightLimitX);
         sideMovementRoot.localPosition = localPos;
-    }
-
-    private void SpawnRoutinePlayer()
-    {
-        var localPos = sideMovementRoot.position;
-        localPos.z += 1.2f;
-        ObjectPooler.Instance.SpawnFromPool("Player", localPos, sideMovementRoot.transform.rotation);
-    }
-    private void SpawnRoutineGiant()
-    {
-        var localPos = sideMovementRoot.position;
-        localPos.z += 1.2f;
-        ObjectPooler.Instance.SpawnFromPool("Giant", localPos, sideMovementRoot.transform.rotation);
     }
 }

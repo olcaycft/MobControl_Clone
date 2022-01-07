@@ -28,4 +28,9 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Debug.Log("You Win");
     }
+
+    public void SpawnRequest(string tag, Vector3 pos, Quaternion rot, int count)
+    {
+        SpawnManager.Instance.SpawnPeople(tag, pos, rot, count);
+    }
 }

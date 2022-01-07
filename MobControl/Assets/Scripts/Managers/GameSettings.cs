@@ -9,4 +9,6 @@ public class GameSettings : ScriptableObject
     public float playerSingleStepSpeedAtTowerArea = 1f;
     public float spawnIntervalForEnemy = 5f;
     public float enemySpeed = 6f;
+    public int enemyCount = 20;
+    public int towerPointSetting = 50;
 }

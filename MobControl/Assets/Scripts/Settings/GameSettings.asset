@@ -16,5 +16,6 @@ MonoBehaviour:
   spawnIntervalForPlayer: 0.5
   playerSpeedChangeTime: 0.5
   playerSingleStepSpeedAtTowerArea: 1
-  spawnIntervalForEnemy: 1
+  spawnIntervalForEnemy: 3
   enemySpeed: 4
+  enemyCount: 20
