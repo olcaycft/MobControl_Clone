@@ -1,23 +1,37 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    private int giantHp;
+    private int numberOfPlayerThrownForSpawnGiant => SettingsManager.GameSettings.numberOfPlayerThrownForSpawnGiant;
     [SerializeField] private Vector3 destination;
-    public int  DecreaseTowerPoint(int towerPoint)
+    public event Action<float> OnProgressChange;
+
+    public int DecreaseTowerPoint(string tag, int hit, int towerPoint)
     {
-        return towerPoint - 1;
-        
+        if (tag.Equals("Player"))
+        {
+            towerPoint -= hit;
+        }
+        else if (tag.Equals("Giant"))
+        {
+            towerPoint -= giantHp;
+        }
+
+        return towerPoint;
     }
+
     public void SetDestination(Vector3 playerDestination)
     {
         destination = playerDestination;
     }
+
     public Vector3 GetDestination()
     {
         return destination;
     }
 
-    
 
     public void GameOver()
     {
@@ -32,5 +46,16 @@ public class GameManager : MonoSingleton<GameManager>
     public void SpawnRequest(string tag, Vector3 pos, Quaternion rot, int count)
     {
         SpawnManager.Instance.SpawnPeople(tag, pos, rot, count);
+    }
+
+    public void SetCurrentThrownPctOnBar(float numberOfPlayerThrown)
+    {
+        float currentThrownPct = numberOfPlayerThrown / numberOfPlayerThrownForSpawnGiant;
+        OnProgressChange?.Invoke(currentThrownPct);
+    }
+
+    public void GiantHitTower(int giantHp)
+    {
+        this.giantHp = giantHp;
     }
 }

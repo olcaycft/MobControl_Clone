@@ -8,7 +8,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     private float minZRange = 1.5f;
     private float maxZRange = 1.8f;
-    
+
     private float arrangeX;
     private float arrangeZ;
 

@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
+public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
-    private static volatile T instance =null;
+    private static volatile T instance = null;
 
     public static T Instance
     {
-        get 
+        get
         {
-            if (instance==null)
+            if (instance == null)
             {
                 instance = FindObjectOfType(typeof(T)) as T;
             }

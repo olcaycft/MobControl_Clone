@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-public class PlayerMovement : MonoBehaviour,IPooledObject
+public class PlayerMovement : MonoBehaviour, IPooledObject
 {
-    private float speed=6f;
+    private float speed = 6f;
     private float playerSpeedChangeTime => SettingsManager.GameSettings.playerSpeedChangeTime;
     private bool isPlayerCome = false;
-    
+
     private void Update()
     {
         if (isPlayerCome)
@@ -21,24 +17,25 @@ public class PlayerMovement : MonoBehaviour,IPooledObject
         {
             OnObjectSpawn();
         }
-        
     }
 
     public void OnObjectSpawn()
     {
-        transform.position += transform.forward*Time.deltaTime*speed;
+        transform.position += transform.forward * Time.deltaTime * speed;
     }
+
     private void playerSpeedChanger()
     {
         speed = 6f;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerRusher"))
         {
             isPlayerCome = true;
             speed = 12f;
-            Invoke(nameof(playerSpeedChanger),playerSpeedChangeTime);
+            Invoke(nameof(playerSpeedChanger), playerSpeedChangeTime);
         }
     }
 }

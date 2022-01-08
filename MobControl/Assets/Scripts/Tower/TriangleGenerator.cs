@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
-public class TriangleGenerator : MonoBehaviour              //Thanks to Freya Holmer and her Youtube Channel Contents.
+public class TriangleGenerator : MonoBehaviour          //Thanks to Freya Holmer and her Youtube Channel Contents.
 {
     private Mesh mesh;
     private Vector3[] vertices;
@@ -15,7 +14,7 @@ public class TriangleGenerator : MonoBehaviour              //Thanks to Freya Ho
 
         CreateShape();
         UpdateMesh();
-        
+
         var localScale = transform.localScale;
         localScale.x = 0.5f;
         transform.localScale = localScale;
@@ -25,9 +24,9 @@ public class TriangleGenerator : MonoBehaviour              //Thanks to Freya Ho
     {
         vertices = new Vector3[]
         {
-            new Vector3(0,0,0),
-            new Vector3(0.5f,0.5f,0),
-            new Vector3(1,0,0)
+            new Vector3(0, 0, 0),
+            new Vector3(0.5f, 0.5f, 0),
+            new Vector3(1, 0, 0)
         };
 
         triangles = new int[]

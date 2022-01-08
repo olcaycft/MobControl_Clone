@@ -1,63 +1,52 @@
-using UnityEditor.AssetImporters;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class Tower : MonoSingleton<Tower>
+public class Tower : MonoBehaviour
 {
-    private int _towerPoint =>SettingsManager.GameSettings.towerPointSetting;
+    private int _towerPoint => SettingsManager.GameSettings.towerPointSetting;
     [SerializeField] private int towerPoint;
     private float spawnInterval => SettingsManager.GameSettings.spawnIntervalForEnemy;
     private int enemyCount => SettingsManager.GameSettings.enemyCount;
-    private int giantHp;
+
     private void Awake()
     {
         towerPoint = _towerPoint;
-        InvokeRepeating(nameof(EnemySpawnRoutine),spawnInterval,spawnInterval);
+        InvokeRepeating(nameof(EnemySpawnRoutine), spawnInterval, spawnInterval);
         GameManager.Instance.SetDestination(transform.position);
         TowerPointChanger.Instance.ChangeTowerPoint(towerPoint);
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         var collisionName = collision.gameObject.tag;
         if (collisionName.Equals("Player") || collisionName.Equals("Giant"))
         {
             collision.gameObject.SetActive(false);
-            
+
             if (collisionName.Equals("Player"))
             {
-                towerPoint -= 1;
+                towerPoint=GameManager.Instance.DecreaseTowerPoint("Player",1, towerPoint);
             }
-            else if(collisionName.Equals("Giant"))
+            else if (collisionName.Equals("Giant"))
             {
-                var giantHp = GetGiantHP();
-                towerPoint -= giantHp ;
+                towerPoint = GameManager.Instance.DecreaseTowerPoint("Giant",1, towerPoint);
             }
-            
+
             TowerPointChanger.Instance.ChangeTowerPoint(towerPoint);
-            
-            if (towerPoint<=0)
+
+            if (towerPoint <= 0)
             {
-                TowerPointChecker();
+                TowerDestroy();
             }
         }
     }
 
     private void EnemySpawnRoutine()
     {
-        GameManager.Instance.SpawnRequest("Enemy",transform.position, new Quaternion(0f,180f,0f,0f),enemyCount);
+        GameManager.Instance.SpawnRequest("Enemy", transform.position, new Quaternion(0f, 180f, 0f, 0f), enemyCount);
     }
 
-    private void TowerPointChecker()
-    { 
+    private void TowerDestroy()
+    {
         GameManager.Instance.Won();
-    }
-
-    public void SetGiantHP(int giantHp)
-    {
-        this.giantHp = giantHp;
-    }
-    private int GetGiantHP()
-    {
-        return this.giantHp;
     }
 }

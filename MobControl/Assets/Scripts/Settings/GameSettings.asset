@@ -18,4 +18,8 @@ MonoBehaviour:
   playerSingleStepSpeedAtTowerArea: 1
   spawnIntervalForEnemy: 3
   enemySpeed: 4
-  enemyCount: 20
+  enemyCount: 5
+  numberOfPlayerThrownForSpawnGiant: 2
+  giantHp: 5
+  towerPointSetting: 50
+  gateSideMovementSensitivity: 3

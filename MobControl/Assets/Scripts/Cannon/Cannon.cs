@@ -1,29 +1,27 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
-public class Cannon : MonoSingleton<Cannon>
+public class Cannon : MonoBehaviour
 {
     private Vector2 inputDrag;
     private Vector2 previousMousePosition;
 
     [SerializeField] private Transform sideMovementRoot;
-    private float sideMovementSensitivity => SettingsManager.GameSettings.sideMovementSensitivity;
-
     [SerializeField] private Transform cannonRightLimit;
     [SerializeField] private Transform cannonLeftLimit;
-
-    private float spawnInterval => SettingsManager.GameSettings.spawnIntervalForPlayer;
-    private float instantiationTimer;
     private float cannonRightLimitX => cannonRightLimit.localPosition.x;
     private float cannonLeftLimitX => cannonLeftLimit.localPosition.x;
 
+    private float sideMovementSensitivity => SettingsManager.GameSettings.sideMovementSensitivity;
+
+    private float _spawnInterval => SettingsManager.GameSettings.spawnIntervalForPlayer;
+    private float spawnInterval;
+
     [SerializeField] private int numberOfPlayerThrown = 0;
-    private int giantCount = 20;
-    public event Action<float>OnProgressChange; 
+    private int numberOfPlayerThrownForSpawnGiant => SettingsManager.GameSettings.numberOfPlayerThrownForSpawnGiant;
+
     private void Awake()
     {
-        instantiationTimer = spawnInterval;
+        spawnInterval = _spawnInterval;
     }
 
     private void Update()
@@ -47,35 +45,32 @@ public class Cannon : MonoSingleton<Cannon>
 
             //here is for little blue ones
 
-            instantiationTimer -= Time.deltaTime;
-            if (instantiationTimer <= Time.deltaTime)
+            spawnInterval -= Time.deltaTime;
+            if (spawnInterval <= Time.deltaTime)
             {
                 var localPos = sideMovementRoot.position;
                 var rotation = sideMovementRoot.transform.rotation;
-                GameManager.Instance.SpawnRequest("Player", localPos, rotation,1);
-                
-                instantiationTimer = spawnInterval;
-                numberOfPlayerThrown++;
-                
-                float currentThrownPct = (float) numberOfPlayerThrown / (float) giantCount;
-                OnProgressChange?.Invoke(currentThrownPct);
+                GameManager.Instance.SpawnRequest("Player", localPos, rotation, 1);
 
+                spawnInterval = _spawnInterval;
+                numberOfPlayerThrown++;
+
+                GameManager.Instance.SetCurrentThrownPctOnBar(numberOfPlayerThrown);
             }
         }
         else
         {
             inputDrag = Vector2.zero;
-            instantiationTimer = spawnInterval;
-            //here is for big yellow one if i can add
-            if (numberOfPlayerThrown>=giantCount)
+            spawnInterval = _spawnInterval;
+            //here is for big yellow one if i can add -->i added :D
+            if (numberOfPlayerThrown >= numberOfPlayerThrownForSpawnGiant)
             {
                 var localPos = sideMovementRoot.position;
                 var rotation = sideMovementRoot.transform.rotation;
-                GameManager.Instance.SpawnRequest("Giant", localPos, rotation,1);
-                
+                GameManager.Instance.SpawnRequest("Giant", localPos, rotation, 1);
+
                 numberOfPlayerThrown = 0;
-                float currentThrownPct = (float) numberOfPlayerThrown / (float) giantCount;
-                OnProgressChange?.Invoke(currentThrownPct);
+                GameManager.Instance.SetCurrentThrownPctOnBar((float) numberOfPlayerThrown);
             }
         }
     }

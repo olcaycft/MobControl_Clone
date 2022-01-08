@@ -1,25 +1,23 @@
-using System;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class GateMovement : MonoBehaviour
 {
-    private int movemetnSide;
-    [SerializeField] private bool goLeft;
     [SerializeField] private Transform sideMovementRoot;
-    private float sideMovementSensitivity = 3f;
-
     [SerializeField] private Transform gateRightLimit;
     [SerializeField] private Transform gateLeftLimit;
-
     private float gateRightLimitX => gateRightLimit.localPosition.x;
     private float gateLeftLimitX => gateLeftLimit.localPosition.x;
+    private float sideMovementSensitivity => SettingsManager.GameSettings.gateSideMovementSensitivity;
+
+    private int movementSide;
+    [SerializeField] private bool goLeft;
+    
 
     private void Awake()
     {
-        movemetnSide = Random.Range(0, 2);
-        if (movemetnSide == 0)
+        movementSide = Random.Range(0, 2);
+        if (movementSide == 0)
         {
             goLeft = true;
         }

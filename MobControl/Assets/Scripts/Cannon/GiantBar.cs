@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,14 +6,15 @@ public class GiantBar : MonoBehaviour
 {
     [SerializeField] private Image foregroundImage;
     [SerializeField] private float updateSpeedSeconds = 0.2f;
+
     private void Awake()
     {
-        Cannon.Instance.OnProgressChange += HandleBarChange;
+        GameManager.Instance.OnProgressChange += HandleBarChange;
     }
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
-        Cannon.Instance.OnProgressChange -= HandleBarChange;
-    }
+        GameManager.Instance.OnProgressChange -= HandleBarChange;
+    }*/
 
     private void HandleBarChange(float pct)
     {
@@ -25,7 +25,7 @@ public class GiantBar : MonoBehaviour
     {
         float preChangePct = foregroundImage.fillAmount;
         float elapsed = 0f;
-        while (elapsed<updateSpeedSeconds)
+        while (elapsed < updateSpeedSeconds)
         {
             elapsed += Time.deltaTime;
             foregroundImage.fillAmount = Mathf.Lerp(preChangePct, pct, elapsed / updateSpeedSeconds);

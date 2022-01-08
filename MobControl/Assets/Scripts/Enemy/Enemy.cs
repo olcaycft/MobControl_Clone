@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     private float speed => SettingsManager.GameSettings.enemySpeed;
+
     private void Update()
     {
         GoForward();
@@ -26,7 +26,6 @@ public class Enemy : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        
     }
 
     private void OnTriggerEnter(Collider other)
