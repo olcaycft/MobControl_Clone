@@ -8,7 +8,7 @@ public class DestinationTracker : MonoBehaviour
 
     private void Awake()
     {
-        destination= GameManager.Instance.GetDestination();
+        destination = GameManager.Instance.GetTowerDestination();
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class DestinationTracker : MonoBehaviour
     {
         Vector3 destinationDirection = destination - transform.position;
         float singleStep = speed * Time.deltaTime;
-        Vector3 newDirection=Vector3.RotateTowards(transform.forward,destinationDirection,singleStep,0f);
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, destinationDirection, singleStep, 0f);
         transform.rotation = Quaternion.LookRotation(newDirection);
     }
 }

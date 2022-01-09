@@ -3,7 +3,7 @@ using UnityEngine;
 public class Giant : MonoBehaviour
 {
     [SerializeField] private int _giantHp => SettingsManager.GameSettings.giantHp;
-    private int giantHp;
+    [SerializeField]private int giantHp;
     private Vector3 firstScale;
 
     private void Awake()
@@ -38,6 +38,7 @@ public class Giant : MonoBehaviour
         {
             //i hit tower giantHp its my current hp.
             GameManager.Instance.GiantHitTower(giantHp);
+            gameObject.transform.localScale = firstScale;
             giantHp = _giantHp;
         }
     }

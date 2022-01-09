@@ -5,7 +5,8 @@ public class GameManager : MonoSingleton<GameManager>
 {
     private int giantHp;
     private int numberOfPlayerThrownForSpawnGiant => SettingsManager.GameSettings.numberOfPlayerThrownForSpawnGiant;
-    [SerializeField] private Vector3 destination;
+    [SerializeField] private Vector3 towerDestination;
+    [SerializeField] private Vector3 cannonDestination;
     public event Action<float> OnProgressChange;
 
     public int DecreaseTowerPoint(string tag, int hit, int towerPoint)
@@ -22,14 +23,24 @@ public class GameManager : MonoSingleton<GameManager>
         return towerPoint;
     }
 
-    public void SetDestination(Vector3 playerDestination)
+    public void SetTowerDestination(Vector3 playerDestination)
     {
-        destination = playerDestination;
+        towerDestination = playerDestination;
     }
 
-    public Vector3 GetDestination()
+    public Vector3 GetTowerDestination()
     {
-        return destination;
+        return towerDestination;
+    }
+
+    public void SetCannonDestination(Vector3 playerDestination)
+    {
+        cannonDestination = playerDestination;
+    }
+
+    public Vector3 GetCannonDestination()
+    {
+        return cannonDestination;
     }
 
 
