@@ -587,8 +587,8 @@ GameObject:
   - component: {fileID: 6847628212329672562}
   - component: {fileID: 3974756502265105660}
   m_Layer: 0
-  m_Name: Giant
-  m_TagString: Giant
+  m_Name: GiantPlayer
+  m_TagString: GiantPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

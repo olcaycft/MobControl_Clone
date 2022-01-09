@@ -12,9 +12,10 @@ TagManager:
   - 4xGate
   - GateRightLimit
   - GateLeftLimit
-  - Giant
+  - GiantPlayer
   - Enemy
   - DeadZone
+  - GiantEnemy
   layers:
   - Default
   - TransparentFX

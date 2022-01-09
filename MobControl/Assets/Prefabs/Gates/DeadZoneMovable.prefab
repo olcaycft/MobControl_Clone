@@ -248,8 +248,8 @@ GameObject:
   - component: {fileID: 5476933272642995419}
   - component: {fileID: 1591520152826412709}
   m_Layer: 0
-  m_Name: 2xMovableGateSideRoot
-  m_TagString: 2xGate
+  m_Name: DeadZoneMovableGateSideRoot
+  m_TagString: DeadZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    private int giantHp;
+    private int playerGiantHpForTower;
+    private int playerGiantHpForEnemyGiant;
+    private int enemyGiantHp;
     private int numberOfPlayerThrownForSpawnGiant => SettingsManager.GameSettings.numberOfPlayerThrownForSpawnGiant;
     [SerializeField] private Vector3 towerDestination;
     [SerializeField] private Vector3 cannonDestination;
@@ -15,9 +17,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             towerPoint -= hit;
         }
-        else if (tag.Equals("Giant"))
+        else if (tag.Equals("GiantPlayer"))
         {
-            towerPoint -= giantHp;
+            towerPoint -= playerGiantHpForTower;
         }
 
         return towerPoint;
@@ -32,17 +34,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         return towerDestination;
     }
-
-    public void SetCannonDestination(Vector3 playerDestination)
-    {
-        cannonDestination = playerDestination;
-    }
-
-    public Vector3 GetCannonDestination()
-    {
-        return cannonDestination;
-    }
-
 
     public void GameOver()
     {
@@ -65,8 +56,28 @@ public class GameManager : MonoSingleton<GameManager>
         OnProgressChange?.Invoke(currentThrownPct);
     }
 
-    public void GiantHitTower(int giantHp)
+    public void PlayerGiantHitTower(int giantHp)
     {
-        this.giantHp = giantHp;
+        this.playerGiantHpForTower = giantHp;
+    }
+
+    public void SetPlayerGiantHitEnemyGiant(int giantHp)
+    {
+        this.playerGiantHpForEnemyGiant = giantHp;
+    }
+
+    public int GetPlayerGiantHp()
+    {
+        return this.playerGiantHpForEnemyGiant;
+    }
+
+    public void SetEnemyGiantHitPlayerGiant(int giantHp)
+    {
+        this.enemyGiantHp = giantHp;
+    }
+
+    public int GetEnemyGiantHp()
+    {
+        return this.enemyGiantHp;
     }
 }

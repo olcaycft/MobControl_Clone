@@ -19,7 +19,7 @@ public class Tower : MonoBehaviour
     {
         var collisionName = collision.gameObject.tag;
         
-        if (collisionName.Equals("Player") || collisionName.Equals("Giant"))
+        if (collisionName.Equals("Player") || collisionName.Equals("GiantPlayer"))
         {
             collision.gameObject.SetActive(false);
             collision.gameObject.transform.position = Vector3.zero;
@@ -27,9 +27,9 @@ public class Tower : MonoBehaviour
             {
                 towerPoint = GameManager.Instance.DecreaseTowerPoint("Player", 1, towerPoint);
             }
-            else if (collisionName.Equals("Giant"))
+            else if (collisionName.Equals("GiantPlayer"))
             {
-                towerPoint = GameManager.Instance.DecreaseTowerPoint("Giant", 1, towerPoint);
+                towerPoint = GameManager.Instance.DecreaseTowerPoint("GiantPlayer", 1, towerPoint);
             }
 
             TowerPointChanger.Instance.ChangeTowerPoint(towerPoint);

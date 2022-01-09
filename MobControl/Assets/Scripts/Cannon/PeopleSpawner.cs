@@ -47,7 +47,7 @@ public class PeopleSpawner : MonoBehaviour
             {
                 var localPos = sideMovementRoot.position;
                 var rotation = sideMovementRoot.transform.rotation;
-                GameManager.Instance.SpawnRequest("Giant", localPos, rotation, 1);
+                GameManager.Instance.SpawnRequest("GiantPlayer", localPos, rotation, 1);
 
                 numberOfPlayerThrown = 0;
                 GameManager.Instance.SetCurrentThrownPctOnBar((float) numberOfPlayerThrown);

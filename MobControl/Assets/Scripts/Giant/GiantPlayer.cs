@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Giant : MonoBehaviour
+public class GiantPlayer : MonoBehaviour
 {
     [SerializeField] private int _giantHp => SettingsManager.GameSettings.giantHp;
     [SerializeField]private int giantHp;
@@ -21,9 +21,9 @@ public class Giant : MonoBehaviour
         gameObject.transform.localScale = localScale;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void DecreaseGiantHp(int count)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        for (int i = 0; i < count; i++)
         {
             giantHp--;
             ScaleChanger();
@@ -32,14 +32,27 @@ public class Giant : MonoBehaviour
                 gameObject.SetActive(false);
                 giantHp = _giantHp;
                 gameObject.transform.localScale = firstScale;
+                break;
             }
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            DecreaseGiantHp(1);
         }
         else if (collision.gameObject.CompareTag("Tower"))
         {
-            //i hit tower giantHp its my current hp.
-            GameManager.Instance.GiantHitTower(giantHp);
+            GameManager.Instance.PlayerGiantHitTower(giantHp);
             gameObject.transform.localScale = firstScale;
             giantHp = _giantHp;
+        }
+        else if (collision.gameObject.CompareTag("GiantEnemy"))
+        {
+            GameManager.Instance.SetPlayerGiantHitEnemyGiant(giantHp);
+            var currentEnemyGiantHp = GameManager.Instance.GetEnemyGiantHp();
+            DecreaseGiantHp(currentEnemyGiantHp);
         }
     }
 }
