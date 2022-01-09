@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -20,10 +22,10 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            transform.position=Vector3.zero;
-            
+            transform.position = Vector3.zero;
+
             collision.gameObject.SetActive(false);
-            collision.gameObject.transform.position=Vector3.zero;
+            collision.gameObject.transform.position = Vector3.zero;
         }
         else if (collision.gameObject.CompareTag("Giant"))
         {

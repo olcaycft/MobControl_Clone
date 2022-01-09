@@ -14,6 +14,7 @@ TagManager:
   - GateLeftLimit
   - Giant
   - Enemy
+  - DeadZone
   layers:
   - Default
   - TransparentFX
