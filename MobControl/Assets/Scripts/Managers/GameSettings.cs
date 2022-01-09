@@ -20,7 +20,4 @@ public class GameSettings : ScriptableObject
 
     //----------------- Tower -------------
     public int towerPointSetting = 50;
-
-    //----------------- Gate -------------
-    public float gateSideMovementSensitivity = 3f;
 }

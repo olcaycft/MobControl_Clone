@@ -1,5 +1,4 @@
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class GateMovement : MonoBehaviour
 {
@@ -8,64 +7,42 @@ public class GateMovement : MonoBehaviour
     [SerializeField] private Transform gateLeftLimit;
     private float gateRightLimitX => gateRightLimit.localPosition.x;
     private float gateLeftLimitX => gateLeftLimit.localPosition.x;
-    private float sideMovementSensitivity => SettingsManager.GameSettings.gateSideMovementSensitivity;
 
-    private int movementSide;
-    [SerializeField] private bool goLeft;
-    
+    private Vector3 startPoint;
+    private bool isLeft;
+
 
     private void Awake()
     {
-        movementSide = Random.Range(0, 2);
-        if (movementSide == 0)
+        startPoint = sideMovementRoot.position;
+        if (Random.value < 0.5f)
         {
-            goLeft = true;
-        }
-        else
-        {
-            goLeft = false;
+            isLeft = true;
         }
     }
 
     private void Update()
     {
-        if (goLeft)
-        {
-            SideMovementLeft();
-        }
-        else if (!goLeft)
-        {
-            SideMovementRight();
-        }
+        SideMovement();
     }
 
-    private void SideMovementRight()
+    private void SideMovement()
     {
-        var localPos = sideMovementRoot.localPosition;
-        if (localPos.x < gateRightLimitX)
+        if (isLeft)
         {
-            localPos += Vector3.right * sideMovementSensitivity * Time.deltaTime;
-            localPos.x = Mathf.Clamp(localPos.x, gateLeftLimitX, gateRightLimitX);
-            sideMovementRoot.localPosition = localPos;
+            var time = Time.time;
+            var pingPong = Mathf.PingPong(time, 1f);
+            var minMax = Mathf.Lerp(gateLeftLimitX, gateRightLimitX, Mathf.SmoothStep(0.0f, 1f, pingPong));
+            var gateMove = minMax * Vector3.left;
+            sideMovementRoot.position = startPoint + gateMove;
         }
         else
         {
-            goLeft = true;
-        }
-    }
-
-    private void SideMovementLeft()
-    {
-        var localPos = sideMovementRoot.localPosition;
-        if (localPos.x > gateLeftLimitX)
-        {
-            localPos -= Vector3.right * sideMovementSensitivity * Time.deltaTime;
-            localPos.x = Mathf.Clamp(localPos.x, gateLeftLimitX, gateRightLimitX);
-            sideMovementRoot.localPosition = localPos;
-        }
-        else
-        {
-            goLeft = false;
+            var time = Time.time;
+            var pingPong = Mathf.PingPong(time, 1f);
+            var minMax = Mathf.Lerp(gateLeftLimitX, gateRightLimitX, Mathf.SmoothStep(0.0f, 1f, pingPong));
+            var gateMove = minMax * Vector3.right;
+            sideMovementRoot.position = startPoint + gateMove;
         }
     }
 }
