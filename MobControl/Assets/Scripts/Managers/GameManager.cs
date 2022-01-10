@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -8,9 +9,42 @@ public class GameManager : MonoSingleton<GameManager>
     private int enemyGiantHp;
     private int numberOfPlayerThrownForSpawnGiant => SettingsManager.GameSettings.numberOfPlayerThrownForSpawnGiant;
     [SerializeField] private Vector3 towerDestination;
-    [SerializeField] private Vector3 cannonDestination;
     public event Action<float> OnProgressChange;
+    private int currentLevel;
 
+    private int score;
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        score = 0;
+        currentLevel = 1;
+        LoadLevel(1);
+    }
+
+    private void LoadLevel(int index)
+    {
+        currentLevel = index;
+        Camera camera=Camera.main;
+        if (camera !=null)
+        {
+            camera.cullingMask = 0;
+        }
+        Invoke(nameof(LoadScene),1f);
+    }
+
+    private void AllScore()
+    {
+        PlayerPrefs.SetInt("Score",score);
+    }
+    public void increaseScore()
+    {
+        score += 5;
+        AllScore();
+    }
+    private void LoadScene()
+    {
+        SceneManager.LoadScene(currentLevel);
+    }
     public int DecreaseTowerPoint(string tag, int hit, int towerPoint)
     {
         if (tag.Equals("Player"))
@@ -38,11 +72,20 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
         Debug.Log("GAME OVER");
+        LoadLevel(currentLevel);
     }
 
     public void Won()
     {
-        Debug.Log("You Win");
+        var nextLevel = currentLevel + 1;
+        if (nextLevel<SceneManager.sceneCountInBuildSettings)
+        {
+            LoadLevel(nextLevel);
+        }
+        else
+        {
+            LoadLevel(1);
+        }
     }
 
     public void SpawnRequest(string tag, Vector3 pos, Quaternion rot, int count)

@@ -52,12 +52,14 @@ public class GiantEnemy : MonoBehaviour
             DecreaseGiantHp(1);
             collision.gameObject.SetActive(false);
             collision.gameObject.transform.position = Vector3.zero;
+            GameManager.Instance.increaseScore();
         }
         else if (collision.gameObject.CompareTag("GiantPlayer"))
         {
             GameManager.Instance.SetEnemyGiantHitPlayerGiant(giantHp);
-            var currentPlayerGiantHp = GameManager.Instance.GetEnemyGiantHp();
+            var currentPlayerGiantHp = GameManager.Instance.GetPlayerGiantHp();
             DecreaseGiantHp(currentPlayerGiantHp);
+            GameManager.Instance.increaseScore();
         }
     }
     

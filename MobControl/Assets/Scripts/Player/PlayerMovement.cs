@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IPooledObject
 {
-    private float speed = 6f;
+    private float speed = 2f;
     private float playerSpeedChangeTime => SettingsManager.GameSettings.playerSpeedChangeTime;
     private bool isPlayerCome = false;
 
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour, IPooledObject
 
     private void playerSpeedChanger()
     {
-        speed = 6f;
+        speed = 2f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour, IPooledObject
         if (other.gameObject.CompareTag("PlayerRusher"))
         {
             isPlayerCome = true;
-            speed = 12f;
+            speed = 4f;
             Invoke(nameof(playerSpeedChanger), playerSpeedChangeTime);
         }
     }

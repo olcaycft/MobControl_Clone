@@ -15,10 +15,10 @@ MonoBehaviour:
   spawnIntervalForPlayer: 0.5
   playerSpeedChangeTime: 0.5
   playerSingleStepSpeedAtTowerArea: 1
-  spawnIntervalForEnemy: 4
-  enemySpeed: 4
-  enemyCount: 4
-  numberOfPlayerThrownForSpawnGiant: 2
+  spawnIntervalForEnemy: 10
+  enemySpeed: 2
+  enemyCount: 10
+  numberOfPlayerThrownForSpawnGiant: 20
   giantHp: 5
   towerPointSetting: 50
   sideMovementSensitivity: 10

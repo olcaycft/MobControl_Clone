@@ -24,11 +24,13 @@ public class Enemy : MonoBehaviour
 
             collision.gameObject.SetActive(false);
             collision.gameObject.transform.position = Vector3.zero;
+            GameManager.Instance.increaseScore();
         }
         else if (collision.gameObject.CompareTag("GiantPlayer"))
         {
             gameObject.SetActive(false);
             transform.position = Vector3.zero;
+            GameManager.Instance.increaseScore();
         }
     }
 

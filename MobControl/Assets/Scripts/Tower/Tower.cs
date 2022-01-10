@@ -23,6 +23,7 @@ public class Tower : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             collision.gameObject.transform.position = Vector3.zero;
+            GameManager.Instance.increaseScore();
             if (collisionName.Equals("Player"))
             {
                 towerPoint = GameManager.Instance.DecreaseTowerPoint("Player", 1, towerPoint);

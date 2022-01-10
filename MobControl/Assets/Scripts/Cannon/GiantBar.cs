@@ -14,10 +14,10 @@ public class GiantBar : MonoBehaviour
         GameManager.Instance.OnProgressChange += HandleBarChange;
         release.enabled = false;
     }
-    /*private void OnDestroy()
+    private void OnDestroy()
     {
         GameManager.Instance.OnProgressChange -= HandleBarChange;
-    }*/
+    }
 
     private void HandleBarChange(float pct)
     {

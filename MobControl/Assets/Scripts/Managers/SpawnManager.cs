@@ -17,24 +17,22 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         if (count == 1)
         {
             minXRange = 0f;
-            maxXRange = 1f;
-            Debug.Log(pos+" in 1x");
+            maxXRange = 0.3f;
         }
         else if (count == 2)
         {
-            minXRange = -0.8f;
-            maxXRange = 0.8f;
-            Debug.Log(pos+" in 2x ");
+            minXRange = -0.3f;
+            maxXRange = 0.3f;
         }
         else if (count == 3)
         {
-            minXRange = -1f;
-            maxXRange = 1f;
+            minXRange = -0.4f;
+            maxXRange = 0.4f;
         }
         else if (count == 4)
         {
-            minXRange = -2f;
-            maxXRange = 2f;
+            minXRange = -0.6f;
+            maxXRange = 0.6f;
         }
         
         if (tag.Equals("Enemy"))
@@ -53,12 +51,10 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         for (int i = 0; i < count; i++)
         {
             var currentPos = pos;
-            Debug.Log(currentPos);
             arrangeX = Random.Range(minXRange, maxXRange);
             arrangeZ = Random.Range(minZRange, maxZRange);
             currentPos.x += arrangeX;
             currentPos.z += arrangeZ;
-            Debug.Log(currentPos);
             ObjectPooler.Instance.SpawnFromPool(tag, currentPos, rot);
         }
 
