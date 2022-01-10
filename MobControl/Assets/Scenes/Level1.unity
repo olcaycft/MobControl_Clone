@@ -759,13 +759,13 @@ MonoBehaviour:
   pools:
   - tag: Player
     prefab: {fileID: 2343464597967047589, guid: f45fba71e1081124ab16aaa1fd2827d6, type: 3}
-    size: 40
+    size: 150
   - tag: Enemy
     prefab: {fileID: 1079555734020345079, guid: cfb39c500c4200a47b1069e991d692c7, type: 3}
-    size: 50
+    size: 30
   - tag: GiantPlayer
     prefab: {fileID: 6638362106827331731, guid: fd23809fb4e668845891e95b26872b64, type: 3}
-    size: 10
+    size: 30
   - tag: GiantEnemy
     prefab: {fileID: 6638362106827331731, guid: a119974848c71224e9967fd68f97ae85, type: 3}
     size: 10

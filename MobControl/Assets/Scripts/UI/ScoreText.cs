@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 using TMPro;
+
 public class ScoreText : MonoBehaviour
 {
-    [SerializeField]private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private void Update()
     {

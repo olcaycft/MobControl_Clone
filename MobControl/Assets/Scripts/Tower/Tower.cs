@@ -18,7 +18,7 @@ public class Tower : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         var collisionName = collision.gameObject.tag;
-        
+
         if (collisionName.Equals("Player") || collisionName.Equals("GiantPlayer"))
         {
             collision.gameObject.SetActive(false);
@@ -35,7 +35,7 @@ public class Tower : MonoBehaviour
 
             TowerPointChanger.Instance.ChangeTowerPoint(towerPoint);
 
-            if (towerPoint <= 0)
+            if (towerPoint == 0)
             {
                 TowerDestroy();
             }

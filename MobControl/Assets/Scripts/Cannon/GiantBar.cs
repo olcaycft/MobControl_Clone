@@ -14,6 +14,7 @@ public class GiantBar : MonoBehaviour
         GameManager.Instance.OnProgressChange += HandleBarChange;
         release.enabled = false;
     }
+
     private void OnDestroy()
     {
         GameManager.Instance.OnProgressChange -= HandleBarChange;
@@ -34,8 +35,9 @@ public class GiantBar : MonoBehaviour
             foregroundImage.fillAmount = Mathf.Lerp(preChangePct, pct, elapsed / updateSpeedSeconds);
             yield return null;
         }
+
         foregroundImage.fillAmount = pct;
-        if (foregroundImage.fillAmount>=1f)
+        if (foregroundImage.fillAmount >= 1f)
         {
             release.enabled = true;
         }

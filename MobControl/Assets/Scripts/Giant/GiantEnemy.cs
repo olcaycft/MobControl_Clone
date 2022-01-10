@@ -5,7 +5,7 @@ public class GiantEnemy : MonoBehaviour
 {
     private float speed => SettingsManager.GameSettings.enemySpeed;
     [SerializeField] private int _giantHp => SettingsManager.GameSettings.giantHp;
-    [SerializeField]private int giantHp;
+    [SerializeField] private int giantHp;
     private Vector3 firstScale;
 
     private void Awake()
@@ -18,6 +18,7 @@ public class GiantEnemy : MonoBehaviour
     {
         GoForward();
     }
+
     private void ScaleChanger()
     {
         var localScale = gameObject.transform.localScale;
@@ -26,10 +27,12 @@ public class GiantEnemy : MonoBehaviour
         localScale.z -= 0.2f;
         gameObject.transform.localScale = localScale;
     }
+
     private void GoForward()
     {
         transform.position += transform.forward * Time.deltaTime * speed;
     }
+
     private void DecreaseGiantHp(int count)
     {
         for (int i = 0; i < count; i++)
@@ -45,6 +48,7 @@ public class GiantEnemy : MonoBehaviour
             }
         }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -62,7 +66,7 @@ public class GiantEnemy : MonoBehaviour
             GameManager.Instance.increaseScore();
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerRusher"))

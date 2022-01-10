@@ -10,41 +10,46 @@ public class GameManager : MonoSingleton<GameManager>
     private int numberOfPlayerThrownForSpawnGiant => SettingsManager.GameSettings.numberOfPlayerThrownForSpawnGiant;
     [SerializeField] private Vector3 towerDestination;
     public event Action<float> OnProgressChange;
-    private int currentLevel;
+    [SerializeField] private int currentLevel;
+    [SerializeField] private int nextLevel;
 
     private int score;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         score = 0;
-        currentLevel = 1;
         LoadLevel(1);
     }
 
     private void LoadLevel(int index)
     {
         currentLevel = index;
-        Camera camera=Camera.main;
-        if (camera !=null)
+        Camera camera = Camera.main;
+        if (camera != null)
         {
             camera.cullingMask = 0;
         }
-        Invoke(nameof(LoadScene),1f);
+
+        Invoke(nameof(LoadScene), 1f);
+    }
+
+    private void LoadScene()
+    {
+        SceneManager.LoadScene(currentLevel);
     }
 
     private void AllScore()
     {
-        PlayerPrefs.SetInt("Score",score);
+        PlayerPrefs.SetInt("Score", score);
     }
+
     public void increaseScore()
     {
         score += 5;
         AllScore();
     }
-    private void LoadScene()
-    {
-        SceneManager.LoadScene(currentLevel);
-    }
+
     public int DecreaseTowerPoint(string tag, int hit, int towerPoint)
     {
         if (tag.Equals("Player"))
@@ -77,8 +82,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Won()
     {
-        var nextLevel = currentLevel + 1;
-        if (nextLevel<SceneManager.sceneCountInBuildSettings)
+        nextLevel = currentLevel + 1;
+        if (nextLevel < SceneManager.sceneCountInBuildSettings)
         {
             LoadLevel(nextLevel);
         }

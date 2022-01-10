@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIntervalForPlayer: 0.5
   playerSpeedChangeTime: 0.5
-  playerSingleStepSpeedAtTowerArea: 1
+  playerSingleStepSpeedAtTowerArea: 3
   spawnIntervalForEnemy: 10
   enemySpeed: 2
   enemyCount: 10
   numberOfPlayerThrownForSpawnGiant: 20
   giantHp: 5
-  towerPointSetting: 50
+  towerPointSetting: 2
   sideMovementSensitivity: 10
   sideMovementLerpSpeed: 5
