@@ -20,6 +20,6 @@ MonoBehaviour:
   enemyCount: 10
   numberOfPlayerThrownForSpawnGiant: 20
   giantHp: 5
-  towerPointSetting: 2
+  towerPointSetting: 50
   sideMovementSensitivity: 10
   sideMovementLerpSpeed: 5
