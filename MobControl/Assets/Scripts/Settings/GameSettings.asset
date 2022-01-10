@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea42c0550d7f41e43bd77508b3a21b80, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  sideMovementSensitivity: 0.015
   spawnIntervalForPlayer: 0.5
   playerSpeedChangeTime: 0.5
   playerSingleStepSpeedAtTowerArea: 1
@@ -22,3 +21,5 @@ MonoBehaviour:
   numberOfPlayerThrownForSpawnGiant: 2
   giantHp: 5
   towerPointSetting: 50
+  sideMovementSensitivity: 10
+  sideMovementLerpSpeed: 5

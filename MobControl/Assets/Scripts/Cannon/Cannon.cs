@@ -12,6 +12,20 @@ public class Cannon : MonoBehaviour
     private float cannonLeftLimitX => cannonLeftLimit.localPosition.x;
 
     private float sideMovementSensitivity => SettingsManager.GameSettings.sideMovementSensitivity;
+    private float sideMovementLerpSpeed => SettingsManager.GameSettings.sideMovementLerpSpeed;
+    private float sideMovementTarget = 0f;
+
+    private Vector2 mousePositionCM
+    {
+        get
+        {
+            Vector2 pixels = Input.mousePosition;
+            var inches = pixels / Screen.dpi;
+            var centimeters = inches * 2.54f;
+
+            return centimeters;
+        }
+    }
 
     private void Update()
     {
@@ -23,14 +37,14 @@ public class Cannon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            previousMousePosition = Input.mousePosition;
+            previousMousePosition = mousePositionCM;
         }
 
         if (Input.GetMouseButton(0))
         {
-            var deltaMouse = (Vector2) Input.mousePosition - previousMousePosition;
+            var deltaMouse = mousePositionCM - previousMousePosition;
             inputDrag = deltaMouse;
-            previousMousePosition = Input.mousePosition;
+            previousMousePosition = mousePositionCM;
         }
         else
         {
@@ -40,9 +54,10 @@ public class Cannon : MonoBehaviour
 
     private void SideMovement()
     {
+        sideMovementTarget += inputDrag.x * sideMovementSensitivity;
+        sideMovementTarget = Mathf.Clamp(sideMovementTarget, cannonLeftLimitX,cannonRightLimitX);
         var localPos = sideMovementRoot.localPosition;
-        localPos += Vector3.right * inputDrag.x * sideMovementSensitivity;
-        localPos.x = Mathf.Clamp(localPos.x, cannonLeftLimitX, cannonRightLimitX);
+        localPos.x = Mathf.Lerp(localPos.x, sideMovementTarget, Time.deltaTime * sideMovementLerpSpeed);
         sideMovementRoot.localPosition = localPos;
     }
 }
