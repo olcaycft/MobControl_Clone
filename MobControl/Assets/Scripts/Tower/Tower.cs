@@ -35,7 +35,7 @@ public class Tower : MonoBehaviour
 
             TowerPointChanger.Instance.ChangeTowerPoint(towerPoint);
 
-            if (towerPoint == 0)
+            if (towerPoint >= -5 && towerPoint==0 )
             {
                 TowerDestroy();
             }
@@ -49,6 +49,6 @@ public class Tower : MonoBehaviour
 
     private void TowerDestroy()
     {
-        GameManager.Instance.Won();
+            GameManager.Instance.Won();
     }
 }
